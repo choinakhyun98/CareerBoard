@@ -1,0 +1,20 @@
+spring:
+  application:
+   name: board-project
+  datasource:
+    url: jdbc:mysql://34.64.33.163:3306
+    hikari:
+      username: root
+      password: 1234
+      driver-class-name: com.mysql.cj.jdbc.Driver
+
+  security:
+    oauth2:
+      client:
+        registration:
+          kakao:
+            client-id: f4e7e09029a9f799de5e9be8916af071
+            client-secret: xjGNyvme3GfSblzp54XRwQwPRkOzVqB
+            scope:
+              - profile_nickname
+            redirect-uri: http://localhost:8080/login/ouath2/code/kakao
