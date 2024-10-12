@@ -1,0 +1,118 @@
+.page{
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    max-width: 400px;
+    align-items: center;
+    margin: 0 auto;
+}
+
+.home-link{
+    margin-top: 50px;
+    font-size: 60px;
+}
+
+.title{
+    font-weight: 1000;
+    text-align: left;
+}
+
+.content-id {
+    margin-top: 30px;
+    width: 100%;
+}
+
+.content-pwd, .content-pwd-check, .content-email, .content-nickname{
+    width: 100%;
+    margin-top: 20px;
+}
+
+.content-input{
+    display:flex;
+    border-radius: 8px;
+    padding: 16px;
+    margin-top:8px;
+    background-color: white;
+    border: 1px solid #e2e0c0;
+}
+
+.content-input input{
+    width:100%;
+    outline:none;
+    border:none;
+    height: 40px;
+    font-size: 20px;
+    font-weight: 400;
+}
+
+.login-guide{
+    text-align: center;
+}
+
+.login-guide a{
+    text-decoration: none;
+}
+
+.login-button{
+    width: 100%;
+}
+
+.login-button button{
+    margin-top: 60px;
+    background-color:dodgerblue;
+    font-size: 25px;
+    font-weight: 500;
+    color: white;
+    border-radius: 8px;
+    width: 380px;
+    height: 70px;
+}
+
+.login-button button:hover{
+    background-color:lightskyblue;
+    transition: 0.3s;
+}
+
+.content-category{
+    width: 100%;
+    margin-top: 20px;
+}
+
+.category{
+    display:flex;
+    border-radius: 8px;
+    padding: 16px;
+    margin-top:8px;
+    background-color: white;
+    border: 1px solid #e2e0c0;
+}    
+
+.dropdown{
+    width: 380px;
+    height: 60px;
+    border-radius: 8px;
+}
+
+.check{
+    width: 100%;
+    display:flex;
+    justify-content: space-evenly;
+    border-radius: 8px;
+    padding: 16px;
+    margin-top:8px;
+    background-color: white;
+}
+
+.check-button{
+    background-color: dodgerblue;
+    color: white;
+    height: 60px;
+    width: 80px;
+    border-radius: 8px;
+}
+
+.check-button:hover{
+    background-color:rgb(4, 105, 169);
+    transition: 0.3s;
+}
