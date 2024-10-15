@@ -14,8 +14,23 @@
 }
 
 .title{
+    justify-content: space-between;
     font-weight: 1000;
     text-align: left;
+}
+
+.alert-false{
+    text-align: left;
+    color:red;
+    font-weight: 1000;
+    font-size: 12px;
+}
+
+.alert-true{
+    text-align: left;
+    color:lightgreen;
+    font-weight: 1000;
+    font-size:15px;
 }
 
 .content-id {
