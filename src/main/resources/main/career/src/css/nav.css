@@ -1,10 +1,12 @@
 .Nav{
     display: flex;
-    background-color:ghostwhite;
     align-items: center;
-    margin: 0 auto;
     justify-content: space-between;
-  }
+    padding-left: 70px;
+    padding-right: 40px;
+    height: 60px;
+    border-bottom: 2px solid #eee;
+}
   
 .main-title{
     display: flex;
@@ -21,7 +23,7 @@
 }
   
 .search-input{
-    height: 50px;
+    height: 35px;
     border: 1px solid;
     border-radius: 8px;
     margin-right: 10px;
@@ -29,21 +31,32 @@
 }
   
 .search-btn{
-    height: 50px;
+    height: 35px;
     border: 1px solid;
     border-radius: 8px;
     margin-right: 50px;
     width: 70px;
     flex-grow: 1;
+    background-color: dodgerblue;
+    color: white;
+    font-weight: 550;
 }
   
-  
-.category{
+.search-btn:hover{
+    background-color:rgb(4, 105, 169);
+    transition: 0.3s;
+}  
+
+.nav-category{
     background-color:ghostwhite;
     border-style:none;
-    width: 250px;
 }
-  
+
+.nav-category .dropdown{
+    height: 35px;
+    width: 300px;
+}
+
 .content-category{
     font-size: 18px;
 }
@@ -59,9 +72,46 @@
     border-radius: 8px; 
     border:lightslategrey;
     height: 50px;
+    font-weight: 550;
 }
-  
+
+.login-button:hover, .sign-button:hover{
+    background-color: #eee;
+}
+
 .nav-button:hover{
     background-color: lightgrey;
     transition: 0.7s;
+}
+
+.mini-profile{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap:20px;
+    padding: 10px;
+}
+
+.mini-profile button{
+    height: 30px;
+    background-color: white;
+    border: none;
+    border-radius: 50px;
+    font-size: 15px;
+}
+
+.mini-profile button:hover{
+    background-color: #eee;
+}
+
+.mini-user-info{
+    display: flex;
+}
+
+.mini-user-info p{
+    font-size: 20px;
+}
+
+.mini-user-info img{
+    width: 100%;
 }

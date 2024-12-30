@@ -1,0 +1,53 @@
+{
+  "user": [
+    {
+      "id": "2894",
+      "userId": "cnh1624",
+      "userPwd": "abcdef1234",
+      "userCorrectPwd": "abcdef1234",
+      "userEmail": "cnh1624@gmail.com",
+      "userNickName": "choi"
+    },
+    {
+      "id": "04e3",
+      "userId": "asdf12345",
+      "userPwd": "asdfgh123",
+      "userCorrectPwd": "asdfgh123",
+      "userEmail": "cnh1624@gmail.com",
+      "userNickName": "checkcheck",
+      "userCategory": "IT"
+    }
+  ],
+  "content":[
+    {
+      "category": "경영·사무·금융·보험직"
+    },
+    {
+      "category": "연구직·공학기술직"
+    },
+    {
+      "category":"교육·법률·사회복지·경찰·소방직·군인"
+    },
+    {
+      "category":"보건·의료직" 
+    },
+    {
+      "category":"예술·디자인·방송·스포츠직"
+    },
+    {
+      "category":"미용·여행·숙박·음식"
+    },
+    {
+      "category":"영업·판매·운전·운송직"
+    },
+    {
+      "category":"건설·채굴직" 
+    },
+    {
+      "category":"설치·정비·생산직"
+    },
+    {
+      "category":"농림어업직"
+    }
+  ]
+}

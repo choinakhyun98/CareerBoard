@@ -1,5 +1,4 @@
 import {useState, useEffect} from 'react';
-
 // 입력값이 올바른 형식인지 확인하기 위한 각 정규식 모음 객체
 const inputRegs = {
     // 아이디 : 문자로 시작하여, 영문자, 숫자를 사용하여 4~20자 이내
@@ -7,7 +6,7 @@ const inputRegs = {
     // 비밀번호 : 최소 8자 이상, 영문 / 숫자 조합
     pwdRegex: /^(?=.*[a-zA-Z])(?=.*[0-9]).{8,25}$/,
     // 닉네임 : 영어 대/소문자, 숫자, 한글 자모음 조합, 2~10자 이내
-    nicknameRegex: /^[a-zA-Z0-9ㄱ-ㅎㅏ-ㅣ가-힣]{2,10}$/,
+    nicknameRegex: /^[a-zA-Z0-9ㄱ-ㅎㅏ-ㅣ가-힣]{3,10}$/,
     // 이메일
     emailRegex : /^[A-Za-z0-9]([-_.]?[A-Za-z0-9])*@[A-Za-z0-9]([-_.]?[A-Za-z0-9])*\.[A-Za-z]{2,3}$/
 }
@@ -23,7 +22,7 @@ export function useInput(){
         inputCorrectPwd : '',
         inputNickName : '',
         inputEmail : '',
-        inputCategory : ''
+        inputCategory : '',
     })
 
     const [validation, setValidation] = useState({
@@ -37,7 +36,8 @@ export function useInput(){
         alertPwd: '',
         alertEmail: '',
         alertNickName: '',
-        alertCorrectPwd: ''
+        alertCorrectPwd: '',
+        alertCategory: ''
     });
 
     const inputChange = ((e)=>{
@@ -46,7 +46,8 @@ export function useInput(){
             ...prevInput,
             [name]: value,
         }));
-    })
+
+    });
 
     //각 입력값에 대한 정규식을 통해 입력값이 유효한지 확인하고 안내 문자 설정
     useEffect(() => {
@@ -58,36 +59,52 @@ export function useInput(){
             setValidation(prev=>({...prev, alertId: '올바른 형식입니다.' , checkId: true}));
         }
 
+    }, [input.inputId]);
+
+    useEffect(()=>{
         // 비밀번호 유효성 검사
         if (!inputRegs.pwdRegex.test(input.inputPwd)) {
             setValidation(prev=> ({...prev, alertPwd: '비밀번호는 최소 8자 이상의 영문 / 숫자 조합이어야 합니다.', checkPwd: false}))
         } else {
             setValidation(prev=> ({...prev, alertPwd: '올바른 형식입니다.', checkPwd: true}))
         }
+    },[input.inputPwd])
 
+    useEffect(()=>{
         // 비밀번호 확인 유효성 검사
         if (input.inputCorrectPwd !== input.inputPwd) {
             setValidation(prev=>({...prev, alertCorrectPwd: '입력한 비밀번호와 같지 않습니다.', checkCorrectPwd: false}))
         } else {
             setValidation(prev=>({...prev, alertCorrectPwd: '일치합니다.', checkCorrectPwd: true}))
         }
+    },[input.inputCorrectPwd,input.inputPwd])
 
+    useEffect(()=>{
         // 이메일 유효성 검사
         if (!inputRegs.emailRegex.test(input.inputEmail)) {
             setValidation(prev=>({...prev, alertEmail: '올바른 이메일 형식이 아닙니다.', checkEmail: false}))
         } else {
             setValidation(prev=>({...prev, alertEmail: '올바른 형식입니다.', checkEmail: true}))
         }
+    },[input.inputEmail])
 
+    useEffect(()=>{
         // 닉네임 유효성 검사
         if (!inputRegs.nicknameRegex.test(input.inputNickName)) {
-            setValidation(prev=>({...prev, alertNickName: '올바른 닉네임 형식이 아닙니다.', checkNickName: false}))
+            setValidation(prev=>({...prev, alertNickName: '닉네임은 영어 대/소문자, 숫자, 한글 자모음 조합, 3~10자로 해주세요.', checkNickName: false}))
         } else {
             setValidation(prev=>({...prev, alertNickName: '올바른 형식입니다.', checkNickName: true}))
         }
+    },[input.inputNickName])
 
-    }, [input]);
+    useEffect(()=>{
+        if(!input.inputCategory){
+            setValidation(prev=>({...prev, alertCategory: '분야를 선택해주세요.', checkCategory: false}))
+        }else{
+            setValidation(prev=>({...prev, alertCategory: '', checkCategory: true}))
+        }
+    },[input.inputCategory])
 
-    return [input, inputChange, validation]
+    return [input, inputChange, validation, setValidation]
     
 }

@@ -38,7 +38,7 @@
     width: 100%;
 }
 
-.content-pwd, .content-pwd-check, .content-email, .content-nickname{
+.content-pwd, .content-pwd-check, .content-email, .content-nickname, .content-category{
     width: 100%;
     margin-top: 20px;
 }
@@ -69,11 +69,11 @@
     text-decoration: none;
 }
 
-.login-button{
+.login-btn{
     width: 100%;
 }
 
-.login-button button{
+.login-btn button{
     margin-top: 60px;
     background-color:dodgerblue;
     font-size: 25px;
@@ -84,14 +84,8 @@
     height: 70px;
 }
 
-.login-button button:hover{
+.login-btn > button:hover{
     background-color:lightskyblue;
-    transition: 0.3s;
-}
-
-.content-category{
-    width: 100%;
-    margin-top: 20px;
 }
 
 .category{
@@ -99,7 +93,7 @@
     border-radius: 8px;
     padding: 16px;
     margin-top:8px;
-    background-color: white;
+    background-color: ghostwhite;
     border: 1px solid #e2e0c0;
 }    
 
@@ -125,6 +119,17 @@
     height: 60px;
     width: 80px;
     border-radius: 8px;
+    font-weight: 600;
+}
+
+.input-check{
+    margin-top: 5px;
+    float: right;
+}
+
+.check-button.dup{
+    height: 40px;
+    width: 100px;
 }
 
 .check-button:hover{

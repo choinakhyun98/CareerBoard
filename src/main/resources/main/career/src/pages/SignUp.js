@@ -1,14 +1,92 @@
-import {Link} from 'react-router-dom';
-import '../css/login.css';
+import {Link, useNavigate} from 'react-router-dom';
+import '../css/login_signIn.css';
 import {useInput} from '../hooks/signin-input.js';
 import ValidationAlert from '../components/ValidationAlert.js'
+import {postSignUp} from '../Service/api.js'
+import axios from 'axios'
 
-function SignIn(){
+export function SignUp(){
 
     //useInput() -> 회원가입에 입력하는 값들을 다루는 userhooks
-    
-    const categories = ['IT', '공시', '영업', '자영업'];
-    const [input, inputChange,validation] = useInput();
+    const navigate = useNavigate();
+    const categories = ['경영·사무·금융·보험직', 
+                        '연구직·공학 기술직', 
+                        '교육·법률·사회복지·경찰·소방직·군인', 
+                        '보건·의료직',
+                        '예술·디자인·방송·스포츠직',
+                        '미용·여행·숙박·음식',
+                        '영업·판매·운전·운송직',
+                        '건설·채굴직',
+                        '설치·정비·생산직',
+                        '농림어업직'
+    ];
+    const [input, inputChange,validation, setValidation] = useInput();
+
+    const userData = {
+        userId: input.inputId,
+        userPwd: input.inputPwd,
+        userCorrectPwd: input.inputCorrectPwd,
+        userEmail: input.inputEmail,
+        userNickName: input.inputNickName,
+        userCategory: input.inputCategory,
+        userState: false
+    }
+
+    const onSubmit = (e)=>{
+        if(!userData.userId || !userData.userPwd || !userData.userEmail || 
+           !userData.userNickName || !userData.userCategory || !userData.userCorrectPwd
+        ){
+            alert("모든 항목을 작성해주세요!")
+        }
+        else if(validation.checkId === false || validation.checkPwd === false || validation.checkCorrectPwd  === false || 
+           validation.checkEmail === false || validation.checkNickName === false || validation.checkCategory === false
+        ){
+            alert("모든 항목을 올바르게 입력하였는지 확인해주세요!")
+        }
+        else{
+            postSignUp(e,userData);
+            navigate('/login');
+            
+        }
+    }
+
+    const onCheckId = async (e)=>{
+        e.preventDefault();
+        const users = await axios.get("http://localhost:3001/user");
+        
+        users.data.forEach(function(user){
+            if(user.userId === userData.userId){
+                setValidation(prev=>({...prev, alertId: "이미 존재하는 아이디가 있습니다!", checkId:false}))
+            }else{
+                setValidation(prev=>({...prev, alertId: "사용가능한 아이디입니다!" ,checkId:true}))
+            }
+        })
+    }
+
+    const onCheckNickName = async (e)=>{
+        e.preventDefault();
+        const users = await axios.get("http://localhost:3001/user");
+        
+        users.data.forEach(function(user){
+            if(user.userNickName === userData.userNickName){
+                setValidation(prev=>({
+                    ...prev, 
+                    alertNickName: "이미 존재하는 닉네임이 있습니다!", 
+                    checkNickName:false}
+                ))
+            }
+            else{
+                setValidation(prev=>({...prev, 
+                    alertNickName: "사용가능한 닉네임입니다!", 
+                    checkNickName:true}
+                ))
+            }
+        })
+    }
+
+    const scrollUpdate = ()=>{
+        window.scrollTo(0,0);
+    };
 
     return(
         <div className="page">
@@ -23,7 +101,6 @@ function SignIn(){
                 <div className="content-input">
                     <input className="input" name="inputId" value={input.inputId} onChange={inputChange} type='text'></input>
                 </div>
-                
                 {/* ValidationAlert -> 입력한 회원 정보 유효성 검사 components
                 */ }
                 <ValidationAlert 
@@ -31,6 +108,10 @@ function SignIn(){
                     validation={validation.alertId} 
                     check={validation.checkId}
                 ></ValidationAlert>
+                <div className="input-check">
+                    <button className="check-button dup" onClick={onCheckId}>중복 확인</button>
+                </div>
+                <div style={{clear:`both`}}></div>
 
             </div>
 
@@ -76,6 +157,10 @@ function SignIn(){
                     validation={validation.alertNickName} 
                     check={validation.checkNickName}
                 ></ValidationAlert>
+                <div className="input-check">
+                    <button className="check-button dup" onClick={onCheckNickName}>중복 확인</button>
+                </div>
+                <div style={{clear:`both`}}></div>
             </div>
 
             <div className="content-email">
@@ -109,14 +194,19 @@ function SignIn(){
                         ))}
                     </select>    
                 </div>
+                <ValidationAlert
+                    input={input.inputCategory}
+                    validation={validation.alertCategory}
+                    check={validation.checkCategory}  
+                > </ValidationAlert>
             </div>
 
             <div className="check">
-                <Link to="/"><button className="check-button">취소</button></Link>
-                <Link to="/"><button className="check-button" type="submit">완료</button></Link>
+                <Link to="/" onClick={scrollUpdate}><button className="check-button">취소</button></Link>
+                <button className="check-button" onClick={onSubmit}>완료</button>
             </div>
         </div>
     )
 }
 
-export default SignIn
+export default SignUp

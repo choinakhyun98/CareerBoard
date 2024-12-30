@@ -1,0 +1,49 @@
+.board-container{
+    width: 80%;
+    margin-top: 80px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.board-category{
+    width: 100%;
+}
+
+.board-category h4{
+    text-align: left;
+    font-size: 48px;
+}
+
+.board-category table{
+    margin-top: 80px;
+    width: 100%;
+}
+
+.board-category th{
+    font-size: 18px;
+    border-right: 1px solid #b4b4b4;
+}
+
+.board-category thead{
+    border-bottom: 2px solid #b4b4b4;
+}
+
+.board-post-btn{
+    text-align: right;
+}
+
+.board-post-btn button{
+    background-color: dodgerblue;
+    font-weight: 600;
+    height: 50px;
+    border-radius: 10px;
+    border: 1px solid #b4b4b4;
+    font-size: 20px;
+    color: white;
+    padding: 10px;
+}
+
+.board-post-btn button:hover{
+    background-color:rgb(4, 105, 169);
+    transition: 0.3s;
+}
